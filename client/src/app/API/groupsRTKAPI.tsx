@@ -14,7 +14,7 @@ const baseQuery = fetchBaseQuery({
 })
 const baseQueryWithReauth: BaseQueryFn<string | FetchArgs, unknown, FetchBaseQueryError> = async (args, api, extraOptions) => {
     let result = await baseQuery(args, api, extraOptions)
-    if(result.error?.originalStatus === 401 || result.error?.status === 401){
+    if(result.error && result.error.status === 401){ //result.error?.originalStatus === 401 || result.error?.status === 401
         const refresh = await fetch('http://localhost:3002/user/refreshToken', {         
             method: 'POST',
             headers: {
