@@ -1,0 +1,13 @@
+{
+    "name": "english-learning",
+    "version": "0.1.0",
+    "private": true,
+    "author": "Mikhail Khoroshev @Mikhail38",
+    "scripts": {
+      "start" : "concurrently \"cd server && npm start\" \"cd client && npm start\"",
+      "build" : "concurrently \"cd server && npm i\" \"cd client && npm i\""
+    },
+    "devDependencies": {
+      "concurrently": "^7.6.0"
+    }
+  }
