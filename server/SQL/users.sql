@@ -14,4 +14,4 @@ CREATE TABLE users (
     refresh_token VARCHAR(255) DEFAULT NULL
 );
 
-INSERT INTO "users" ("user_login", "user_password", "user_name", "email") VALUES ('mike', 'Araara14', 'Mikhail', '79836993884@ya.ru');
+INSERT INTO "users" ("user_login", "user_password", "user_name", "email") VALUES ('admin', 'Araara14', 'admin', '79836993884@ya.ru');
