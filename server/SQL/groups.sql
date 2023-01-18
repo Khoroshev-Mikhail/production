@@ -12,9 +12,9 @@ CREATE TABLE groups (
     words INTEGER[] DEFAULT array[]::INTEGER[] /*Когда удаляется слово надо автоматически удалять айдишник слова из этого массива. Желательно удалять из массива*/
 );
 
-INSERT INTO "groups" ("title", "title_rus", "words") VALUES ('100nouns', 'Топ-100 Существительных');
-INSERT INTO "groups" ("title", "title_rus", "words") VALUES ('100adjectives', 'Топ-100 Прилагательных');
-INSERT INTO "groups" ("title", "title_rus", "words") VALUES ('100adverbs', 'Топ-100 Наречий');
-INSERT INTO "groups" ("title", "title_rus", "words") VALUES ('100verbs', 'Топ-100 Глаголов');
+INSERT INTO "groups" ("title", "title_rus") VALUES ('100nouns', 'Топ-100 Существительных');
+INSERT INTO "groups" ("title", "title_rus") VALUES ('100adjectives', 'Топ-100 Прилагательных');
+INSERT INTO "groups" ("title", "title_rus") VALUES ('100adverbs', 'Топ-100 Наречий');
+INSERT INTO "groups" ("title", "title_rus") VALUES ('100verbs', 'Топ-100 Глаголов');
 
 
