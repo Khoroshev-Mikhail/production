@@ -1,9 +1,10 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import { Text, Title } from '../types/types'
+import { SERVER_URL } from '../variables/dbVariables'
 export const textsAPI = createApi({
     reducerPath: 'textsApi',
     baseQuery: fetchBaseQuery({
-        baseUrl: 'http://localhost:3002/texts',
+        baseUrl: `${SERVER_URL}/texts`,
         prepareHeaders: (headers: Headers) => {
             headers.set('Authorization', `Bearer Ara`)
             return headers

@@ -4,9 +4,10 @@ import { REFRESH_TOKEN, TOKEN } from '../variables/localStorageVariables';
 import { exitThunk } from '../clientAPI/userSliceAPI';
 import { Group, Title, Word } from '../types/types'
 import { setUserToLocalStorage } from '../fns/localStorageFns';
+import { SERVER_URL } from '../variables/dbVariables';
 
 const baseQuery = fetchBaseQuery({ 
-    baseUrl: 'http://localhost:3002/groups',
+    baseUrl: `${SERVER_URL}/groups`,
     prepareHeaders: (headers: Headers) => {
       headers.set('Authorization', `Bearer ${localStorage.getItem(TOKEN) || 'unknown' }`)
       return headers
@@ -15,7 +16,7 @@ const baseQuery = fetchBaseQuery({
 const baseQueryWithReauth: BaseQueryFn<string | FetchArgs, unknown, FetchBaseQueryError> = async (args, api, extraOptions) => {
     let result = await baseQuery(args, api, extraOptions)
     if(result.error && result.error.status === 401){ //result.error?.originalStatus === 401 || result.error?.status === 401
-        const refresh = await fetch('http://localhost:3002/user/refreshToken', {         
+        const refresh = await fetch(`${SERVER_URL}/user/refreshToken`, {         
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json;charset=utf-8'

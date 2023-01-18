@@ -3,13 +3,14 @@ import { REFRESH_TOKEN } from '../variables/localStorageVariables'
 import { removeUserFromLocalStorage, setUserToLocalStorage } from '../fns/localStorageFns'
 import { User } from '../types/types'
 import { RootState } from '../store'
+import { SERVER_URL } from '../variables/dbVariables'
 
 const initialState: User = { id: null, user_login: null, user_name: null, email: null }
 
 export const loginThunk = createAsyncThunk(
     'Thunk: login',
     async function(request: { login: string, password: string}) {
-        const response = await fetch('http://localhost:3002/user/auth', {
+        const response = await fetch(`${SERVER_URL}/user/auth`, {
             method: 'POST',            
             headers: {
                 'Content-Type': 'application/json;charset=utf-8'
@@ -26,7 +27,7 @@ export const loginThunk = createAsyncThunk(
 export const refreshTokensThunk = createAsyncThunk(
     'Thunk: refreshTokens',
     async function() {
-        const response = await fetch('http://localhost:3002/user/auth/refresh', {
+        const response = await fetch(`${SERVER_URL}/user/auth/refresh`, {
             method: 'POST',            
             headers: {
                 'Content-Type': 'application/json;charset=utf-8'
@@ -45,7 +46,7 @@ export const refreshTokensThunk = createAsyncThunk(
 export const registrationThunk = createAsyncThunk(
     'Thunk: registration',
     async function(request: { login: string, password: string }, thunkApi) {
-        const response = await fetch('http://localhost:3002/user/registration', {
+        const response = await fetch(`${SERVER_URL}/user/registration`, {
             method: 'POST',            
             headers: {
                 'Content-Type': 'application/json;charset=utf-8'
@@ -68,7 +69,7 @@ export const exitThunk = createAsyncThunk(
             removeUserFromLocalStorage()
             return initialState
         }
-        const response = await fetch(`http://localhost:3002/user/logout/${user.id}`)
+        const response = await fetch(`${SERVER_URL}/user/logout/${user.id}`)
         const data = await response.json()
         if(response.ok){
             removeUserFromLocalStorage()
