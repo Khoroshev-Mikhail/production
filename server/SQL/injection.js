@@ -17,9 +17,23 @@ try{
 }
 
 try{
+    db.none(words)
+}catch(e){
+    console.log('WORDS')
+    console.log(e.message)
+}
+
+try{
     db.none(content)
 }catch(e){
     console.log('CONTENT')
+    console.log(e.message)
+}
+
+try{
+    db.none(groups)
+}catch(e){
+    console.log('GROUPS')
     console.log(e.message)
 }
 
@@ -32,13 +46,6 @@ try{
 
 
 try{
-    db.none(groups)
-}catch(e){
-    console.log('GROUPS')
-    console.log(e.message)
-}
-
-try{
     db.none(users)
 }catch(e){
     console.log('USERS')
@@ -49,12 +56,5 @@ try{
     db.none(user_vocabulary)
 }catch(e){
     console.log('USER_VOCABULARY')
-    console.log(e.message)
-}
-
-try{
-    db.none(words)
-}catch(e){
-    console.log('WORDS')
     console.log(e.message)
 }
