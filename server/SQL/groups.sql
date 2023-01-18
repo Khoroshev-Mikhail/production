@@ -9,7 +9,7 @@ CREATE TABLE groups (
     title_rus VARCHAR (100),
     img VARCHAR (100),
     is_global BOOLEAN DEFAULT true,
-    words INTEGER[] DEFAULT array[]::INTEGER[] /*Когда удаляется слово надо автоматически удалять айдишник слова из этого массива. Желательно удалять из массива*/
+    words INTEGER[] DEFAULT array[]::INTEGER[]
 );
 
 INSERT INTO "groups" ("title", "title_rus") VALUES ('100nouns', 'Топ-100 Существительных');
