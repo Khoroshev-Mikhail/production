@@ -15,6 +15,5 @@ CREATE TABLE user_vocabulary (
     grammar INTEGER[] DEFAULT array[]::INTEGER[]
 );
 
-INSERT INTO "user_vocabulary" ("id_user", "spelling", "auding", "english", "russian") 
-VALUES (1, ARRAY[], ARRAY[], ARRAY[], ARRAY[]);
+INSERT INTO "user_vocabulary" ("id_user") VALUES (1);
 
