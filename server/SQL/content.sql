@@ -1,5 +1,3 @@
--- \i /Users/tatanaarhipova/MikeIT/backeng/SQL/content.sql
-
 SET standard_conforming_strings = off;
 SET check_function_bodies = false;
 SET client_min_messages = warning;
@@ -16,10 +14,6 @@ CREATE TABLE texts (
     visible BOOLEAN DEFAULT true
 );
 
-INSERT INTO "texts" ("title", "text_body") VALUES ('First test text', 'test text body');
-INSERT INTO "texts" ("title", "text_body") VALUES ('Second text', 'second test text body');
-INSERT INTO "texts" ("title", "text_body") VALUES ('Third text', 'third test text body');
-
 CREATE TABLE videos (
     id SERIAL PRIMARY KEY,
     title VARCHAR(100),
@@ -31,9 +25,6 @@ CREATE TABLE videos (
     visible BOOLEAN DEFAULT true
 );
 
-INSERT INTO "videos" ("title", "video_description") VALUES ('First video', 'first video desc');
-INSERT INTO "videos" ("title", "video_description") VALUES ('Second video', 'Second video desc');
-
 CREATE TABLE audios (
     id SERIAL PRIMARY KEY,
     title VARCHAR(100),
@@ -44,7 +35,5 @@ CREATE TABLE audios (
     is_global BOOLEAN DEFAULT true,
     visible BOOLEAN DEFAULT true
 );
-INSERT INTO "audios" ("title", "audio_description") VALUES ('First audio', 'first audio desc');
-INSERT INTO "audios" ("title", "audio_description") VALUES ('Second audio', 'Second audio desc');
 
 

@@ -5,7 +5,8 @@
     "author": "Mikhail Khoroshev @Mikhail38",
     "scripts": {
         "start": "concurrently \"cd server && npm start\" \"cd client && npm start\"",
-        "build": "concurrently \"cd server && npm i\" \"cd client && npm i\""
+        "build": "concurrently \"cd server && npm i\" \"cd client && npm i\"",
+        "build-sql": "cd server && cd SQL node injection.js"
     },
     "devDependencies": {
         "concurrently": "^7.6.0"
