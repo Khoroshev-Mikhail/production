@@ -21,6 +21,7 @@ const routerWord = require('./routes/routerWord.js');
 const routerUser = require('./routes/routerUser.js');
 const routerAudio = require('./routes/routerAudio.js');
 const routerVocabulary = require('./routes/routerVocabulary.js');
+const routerTimes = require('./routes/routerTimes.js');
 
 app.use(fileUpload({ safeFileNames: /[^a-zа-яё\d\.]/ui, limits: { fileSize: 1 * 1024 * 1024 } }));
 app.use(express.static('public'));
@@ -73,6 +74,7 @@ app.use('/words', routerWord)
 app.use('/user', routerUser)
 app.use('/audios', routerAudio)
 app.use('/vocabulary', routerVocabulary)
+app.use('/times', routerTimes)
 
 
 // Аудио добавить для референсес ендпоинт

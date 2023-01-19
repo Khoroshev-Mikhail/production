@@ -22,6 +22,16 @@ export type Group = {
     is_global?: boolean,
     visible?: boolean
 };
+export type Times = {
+    id: number, 
+    title: string,
+    title_rus: string,
+    short_description: string,
+    full_description: string, 
+    statement_formula: string,
+    negation_formula: string, 
+    question_formula: string
+};
 export type Audio = {
     id: number, 
     title: string,

@@ -10,6 +10,7 @@ import { wordsAPI } from './API/wordRTKAPI';
 import { vocabularySlice } from './clientAPI/vocabularySliceAPI';
 import { learningSlice } from './clientAPI/learningSliceAPI';
 import { groupSlice } from './clientAPI/groupSliceAPI';
+import { timesAPI } from './API/grammarRTKAPI';
 
 export const store = configureStore({
   reducer: {
@@ -17,6 +18,7 @@ export const store = configureStore({
     [groupsAPI.reducerPath]: groupsAPI.reducer,
     [vocabularyAPI.reducerPath]: vocabularyAPI.reducer,
     [textsAPI.reducerPath]: textsAPI.reducer,
+    [timesAPI.reducerPath]: timesAPI.reducer,
     user: userSlice.reducer,
     texts: textsSlice.reducer,
     oneText: oneTextSlice.reducer,
@@ -32,6 +34,7 @@ export const store = configureStore({
       groupsAPI.middleware, 
       vocabularyAPI.middleware, 
       textsAPI.middleware,
+      timesAPI.middleware,
     )
 });
 export const { dispatch } = store

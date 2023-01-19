@@ -14,7 +14,6 @@ class AudioService {
         const data = await db.one('SELECT * FROM audios WHERE id = $1', [id]);
         const content_references = await db.oneOrNone('SELECT * FROM content_references WHERE id_text = $1', [id]);
         return {...data, content_references}
-
     }
     async add (title, img, audio_description){
         if(!title | !img | !audio_description) {
