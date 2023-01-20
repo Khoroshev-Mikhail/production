@@ -44,7 +44,7 @@ export default function AdminWords(){
         formData.append('rus', rus);
         img && formData.append('img', img[0]);
         audio && formData.append('audio', audio[0]);
-        setWord(formData).unwrap().then(word => {
+        setWord(formData).unwrap().then( word => {
             includesGroup.forEach((id: number) => addWordToGroup({ id, word_id: word.id }) )
             setEng('')
             setRus('')

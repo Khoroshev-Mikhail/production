@@ -38,7 +38,7 @@ export const textsAPI = createApi({
                 : [{ type: 'texts', id: 'LIST' }], 
             transformResponse: (resp: Title[]) => resp.sort((a: Title, b: Title) => a.id - b.id)
         }),
-        setText: builder.mutation<void, {title: string, img: string, text_body: string}>({
+        setText: builder.mutation<void, any>({ 
             query: (body) => ({
                 url: `/`,
                 method: 'POST',

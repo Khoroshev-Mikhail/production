@@ -14,7 +14,7 @@ export default function Auding(){
     const [ setVocabulary ] = useSetVocabularyMutation()
     const [ answer, setAnswer ] = useState<string>('')
 
-    const baseAudio = new Audio(`http://localhost:3002/audio/${data?.trueVariant.audio}`)
+    const baseAudio = new Audio(`http://localhost:3002/words/audio/${data?.trueVariant.audio}`)
     useEffect(()=>{
         baseAudio.play()
     }, [data])

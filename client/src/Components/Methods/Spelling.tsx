@@ -16,7 +16,7 @@ export default function Spelling(props: any){
     const defaultImg = '51_ccc.jpeg'
     const [answer, setAnswer] = useState<string>('')
     const [eng, setEng] = useState<string>('')
-    const baseAudio = new Audio(`http://localhost:3002/audio/${data?.trueVariant.audio}`)
+    const baseAudio = new Audio(`http://localhost:3002/words/audio/${data?.trueVariant.audio}`)
 
     function clickEng(i: number){
         setEng(state => {
@@ -49,7 +49,7 @@ export default function Spelling(props: any){
         <>
         { isSuccess && data !== null && data.trueVariant &&
         <div className="w-full p-2 sm:w-96 mx-auto bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
-            <div className="sm:h-72 rounded-t-lg" style={{backgroundImage: `url(http://localhost:3002/img/${data.trueVariant.img || defaultImg})`, backgroundPosition: 'center center', backgroundSize: 'cover'}}></div>
+            <div className="sm:h-72 rounded-t-lg" style={{backgroundImage: `url(http://localhost:3002/words/img/${data.trueVariant.img || defaultImg})`, backgroundPosition: 'center center', backgroundSize: 'cover'}}></div>
             <div className="p-5">
                 <h5 className="mb-2 text-center text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{data.trueVariant.rus}</h5>
                 <div className="flex flex-wrap gap-1 justify-center mb-10 p-2 rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">

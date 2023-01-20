@@ -31,8 +31,8 @@ class TextController {
     }
     async add (req, res){
         try {
-            await TextService.add(req.body.title, req.body.img, req.body.text_body)
-            return res.sendStatus(200)
+            const data = await TextService.add(req.body.title, req.body.title_rus, req.body.text_body, req.files.img)
+            return res.status(200).send(data)
         } 
         catch(e) {
             return res.status(500).send(e.message)

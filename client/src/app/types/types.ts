@@ -60,10 +60,18 @@ export type GroupTitle = {
 export type Text = {
     id: number, 
     title: string,
+    title_rus: string,
     img: string,
     text_body: string,
+    is_global?: boolean,
     visible?: boolean,
 };
+
+export type Text_bodyJSON = {
+    eng: string,
+    rus: string,
+    time: string | null, // потом здесь напиши конкретные строки
+}
 
 export type User = {
     id: number | null,

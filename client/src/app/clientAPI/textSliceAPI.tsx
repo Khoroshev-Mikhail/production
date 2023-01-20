@@ -30,12 +30,14 @@ export const getOneTextThunk = createAsyncThunk<Text, number | string>(
 const oneTextInitialState: Text = {
     id: 0,
     title: 'Загрузка',
+    title_rus: 'Загрузка',
     img: 'Loading.jpg',
     text_body: '',
 }
 const oneTextErrorState: Text = {
     id: 0,
     title: 'Ошибка!',
+    title_rus: 'Загрузка',
     img: 'Error.jpg',
     text_body: 'Вероятно это на стороне сервера...',
 }

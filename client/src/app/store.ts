@@ -10,7 +10,7 @@ import { wordsAPI } from './API/wordRTKAPI';
 import { vocabularySlice } from './clientAPI/vocabularySliceAPI';
 import { learningSlice } from './clientAPI/learningSliceAPI';
 import { groupSlice } from './clientAPI/groupSliceAPI';
-import { timesAPI } from './API/grammarRTKAPI';
+import { timesAPI } from './API/timesRTKAPI';
 
 export const store = configureStore({
   reducer: {

@@ -4,6 +4,7 @@ import { getReferences } from "../../app/clientAPI/referencesSliceAPI"
 import { getOneTextThunk } from "../../app/clientAPI/textSliceAPI"
 import { useAppDispatch, useAppSelector } from "../../app/hooks/hooks"
 import { RootState } from "../../app/store"
+import { Text_bodyJSON } from "../../app/types/types"
 import { References } from "../References/References"
 
 export default function TextPage(){
@@ -27,7 +28,7 @@ export default function TextPage(){
             {text &&
             <div className="my-4">
                 <h1>{text.title}</h1>
-                <div>{text.text_body}</div>
+                <div>{text.text_body && JSON.parse(text.text_body).map((el: Text_bodyJSON) => el.eng).join('. ')}</div>
             </div>
             }
         </>

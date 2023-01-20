@@ -21,7 +21,7 @@ export default function Russian(){
             }
         }
     }
-    const baseAudio = new Audio(`http://localhost:3002/audio/${data?.trueVariant?.audio}`)
+    const baseAudio = new Audio(`http://localhost:3002/words/audio/${data?.trueVariant?.audio}`)
     useEffect(()=>{
         baseAudio.play()
     }, [data])
@@ -30,7 +30,7 @@ export default function Russian(){
         <>  
             { isSuccess && data !== null && data.trueVariant && data.falseVariant &&
             <div className="w-full sm:w-96 mx-auto bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
-                <div className="sm:h-72 rounded-t-lg" style={{backgroundImage: `url(http://localhost:3002/img/${data.trueVariant.img || defaultImg})`, backgroundPosition: 'center center', backgroundSize: 'cover'}}></div>
+                <div className="sm:h-72 rounded-t-lg" style={{backgroundImage: `url(http://localhost:3002/words/img/${data.trueVariant.img || defaultImg})`, backgroundPosition: 'center center', backgroundSize: 'cover'}}></div>
                 <div className="p-5">
                     <h5 className="mb-2 text-center text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
                         {data.trueVariant.rus}

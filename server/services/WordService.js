@@ -4,7 +4,7 @@ import { unlink } from 'node:fs/promises';
 class WordService {
     audioTypes = ['audio/wave', 'audio/wav', 'audio/x-wav', 'audio/x-pn-wav', 'audio/webm', 'audio/ogg', 'audio/mpeg3', 'audio/x-mpeg-3', 'audio/mpeg']
     imgTypes = ['image/jpeg', 'image/png', 'image/jp2']
-    mediaPath = __dirname + '/../public'
+    mediaPath = __dirname + '/../public/words'
     
     async getAll (){
         return await db.manyOrNone('SELECT * FROM words');
