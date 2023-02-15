@@ -27,6 +27,8 @@ import AdminOneWord from "./AdminComponents/AdminWords/AdminOneWord";
 import UserVocabularyPage from "./Components/UserPage/Vocabulary";
 import AdminTexts from "./AdminComponents/AdminTexts/AdminTexts";
 import AdminAddText from "./AdminComponents/AdminTexts/AdminAddText";
+import EditText from "./AdminComponents/AdminTexts/AdminEditText";
+import AdminEditText from "./AdminComponents/AdminTexts/AdminEditText";
 
 function App() {
     const dispatch = useAppDispatch()
@@ -50,7 +52,7 @@ function App() {
                         <Route path="/admin/groups/:id" element={ <AdminOneGroup /> } />
                         <Route path="/admin/texts/" element={ <AdminTexts /> } />
                         <Route path="/admin/texts/add" element={ <AdminAddText /> } />
-                        {/* <Route path="/admin/texts/:id" element={ <AdminOneGroup /> } /> */}
+                        <Route path="/admin/texts/:id" element={ <AdminEditText /> } />
                     </> }
                     
                     <Route path="/" element={<Groups />} />

@@ -1,10 +1,15 @@
+import { skipToken } from "@reduxjs/toolkit/dist/query";
 import { Button, FileInput, Label, Select, Textarea, TextInput } from "flowbite-react";
 import { useEffect, useState } from "react";
-import { useSetTextMutation } from "../../app/API/textsRTKAPI";
+import { useParams } from "react-router-dom";
+import { useGetOneTextQuery, usePutTextMutation, useSetTextMutation } from "../../app/API/textsRTKAPI";
 import { useGetAllTimesQuery } from "../../app/API/timesRTKAPI";
 import { Text_bodyJSON } from "../../app/types/types";
 
-export default function AdminAddText(){
+export default function AdminEditText(){
+    //Локальные переменные
+    const { id } = useParams()
+
     //Локальный стейт
     const [ img, setImg ] = useState<any>()
     const [ title, setTitle ] = useState<string>('')
@@ -13,8 +18,9 @@ export default function AdminAddText(){
     const [ result, setResult ] = useState<Text_bodyJSON[]>([])
 
     //API
+    const { data: dataText, isSuccess: isSuccessText } = useGetOneTextQuery(id ?? skipToken)
     const { data: dataGrammars, isSuccess } = useGetAllTimesQuery()
-    const [ setText ] = useSetTextMutation()
+    const [ putText ] = usePutTextMutation()
 
     //Локальные методы
     function handlerSentences(str: string){
@@ -46,23 +52,30 @@ export default function AdminAddText(){
     }
     function handlerForm(){
         const formData = new FormData();
+        id && formData.append('id', id);
         formData.append('title', title);
         formData.append('title_rus', title_rus);
         formData.append('text_body', JSON.stringify(result));
         img && formData.append('img', img[0]);
-        setText(formData).unwrap().then( text => {
-            setTitle('')
-            setSentences('')
-            setResult([])
-            setTitle_rus('')
-            setImg(null)
-        }).catch(rejected => console.log(rejected))
+        putText(formData)
+            .unwrap()
+            .catch(rejected => {
+                console.log(rejected)
+                alert('Ошибка обновления текста. Смотри консоль.')
+        })
     }
-    
-    //Эффекты
-    // useEffect(()=>{
-    //     console.log(result)
-    // }, [result])
+    useEffect(()=>{
+        if(isSuccess && dataText){
+            setTitle(dataText.title)
+            setTitle_rus(dataText.title_rus)
+            try{
+                setResult(JSON.parse(dataText.text_body))
+                setSentences(JSON.parse(dataText.text_body).map((el: Text_bodyJSON) => el.eng).join('. ') + '.')
+            }catch(e){
+                console.log(e)
+            }
+        }
+    }, [dataText])
     return(
         <>
             <div className="grid grid-cols-9  gap-2 rounded-lg">
@@ -120,8 +133,7 @@ export default function AdminAddText(){
                 })}
             </div>
             <div className="col-span-9 grid grid-cols-9 py-2">
-                <div className="col-span-4"></div>
-                <div className="col-span-4"></div>
+                <div className="col-span-8"></div>
                 <div className="col-span-1"><Button color={'success'} onClick={handlerForm}>Сохранить</Button></div>
             </div>
         </>

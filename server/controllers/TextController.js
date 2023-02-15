@@ -40,16 +40,7 @@ class TextController {
     }
     async update (req, res){
         try {
-            const data = await TextService.update(req.body.title, req.body.img, req.body.text_body, req.body.id)
-            return res.status(200).send(data)
-        } 
-        catch(e) {
-            return res.status(500).send(e.message)
-        }
-    }
-    async updateWithoutImg (req, res){
-        try {
-            const data = await TextService.updateWithoutImg(req.body.title, req.body.text_body, req.body.id)
+            const data = await TextService.update(req.body.id, req.body.title, req.body.title_rus, req.body.text_body, req.files?.img || undefined)
             return res.status(200).send(data)
         } 
         catch(e) {
@@ -58,14 +49,23 @@ class TextController {
     }
     async delete (req, res){
         try {
-            await TextService.delete(req.body.id)
-            return res.sendStatus(204)
+            const data = await TextService.delete(req.body.id)
+            return res.status(200).send(data)
         } 
         catch(e) {
             return res.status(500).send(e.message)
         }
     }
-    async getAllTitles (_, res){
+    async toggleHide (req, res){
+        try {
+            const data = await TextService.toggleHide(req.body.id)
+            return res.status(200).send(data)
+        } 
+        catch(e) {
+            return res.status(500).send(e.message)
+        }
+    }
+    async getAllTitles (req, res){
         try {
             const data = await TextService.getAllTitles()
             return res.status(200).send(data)

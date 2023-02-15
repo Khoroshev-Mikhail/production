@@ -3,7 +3,7 @@ const fs = require("fs"); // import { readFileSync } from 'node:fs/promises';
 
 async function injection(){
     try{
-        // const grammar = fs.readFileSync(__dirname + '/grammar.sql', 'utf-8')
+        const times = fs.readFileSync(__dirname + '/times.sql', 'utf-8')
         const content_references = fs.readFileSync(__dirname + '/content_references.sql', 'utf-8')
         const content = fs.readFileSync(__dirname + '/content.sql', 'utf-8')
         const groups = fs.readFileSync(__dirname + '/groups.sql', 'utf-8')
@@ -11,7 +11,7 @@ async function injection(){
         const user_vocabulary = fs.readFileSync(__dirname + '/user_vocabulary.sql', 'utf-8')
         const words = fs.readFileSync(__dirname + '/words.sql', 'utf-8')
 
-        // await db.none(grammar)
+        await db.none(times)
         await db.none(words)
         await db.none(content)
         await db.none(groups)

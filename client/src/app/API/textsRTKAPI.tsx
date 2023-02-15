@@ -23,8 +23,8 @@ export const textsAPI = createApi({
                 : [{ type: 'texts', id: 'LIST' }], 
             transformResponse: (resp: Text[]) => resp.sort((a: Text, b: Text) => a.id - b.id)
         }),
-        getOneText: builder.query<Text, number>({
-            query: (id: number) =>  `/${id}`,
+        getOneText: builder.query<Text, number | string>({
+            query: (id: number | string) =>  `/${id}`,
             providesTags: (result, error, id) =>[{ type: 'texts', id}]
         }),
         getTitleTexts: builder.query<any, void>({
@@ -38,7 +38,7 @@ export const textsAPI = createApi({
                 : [{ type: 'texts', id: 'LIST' }], 
             transformResponse: (resp: Title[]) => resp.sort((a: Title, b: Title) => a.id - b.id)
         }),
-        setText: builder.mutation<void, any>({ 
+        setText: builder.mutation<Text, any>({ 
             query: (body) => ({
                 url: `/`,
                 method: 'POST',
@@ -50,11 +50,19 @@ export const textsAPI = createApi({
             query: (id) => ({
                 url: `/`,
                 method: 'DELETE',
-                body: {id}
+                body: { id }
             }),
             invalidatesTags: ['texts']
         }),
-        updateText: builder.mutation<void, {id: number, title: string, img: string, text_body: string}>({
+        hideText: builder.mutation<void, number>({
+            query: (id) => ({
+                url: `/hide/${id}`,
+                method: 'PUT',
+                body: { id }
+            }),
+            invalidatesTags: ['texts']
+        }),
+        putText: builder.mutation<void, any>({
             query: (body) => ({
                 url: `/`,
                 method: 'PUT',
@@ -65,4 +73,4 @@ export const textsAPI = createApi({
     })
 })
 
-export const { useGetTextsQuery, useGetTitleTextsQuery, useGetOneTextQuery, useSetTextMutation, useDeleteTextMutation, useUpdateTextMutation } = textsAPI
+export const { useGetTextsQuery, useGetTitleTextsQuery, useGetOneTextQuery, useSetTextMutation, useDeleteTextMutation, useHideTextMutation, usePutTextMutation } = textsAPI

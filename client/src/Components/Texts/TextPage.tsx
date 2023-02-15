@@ -6,6 +6,7 @@ import { useAppDispatch, useAppSelector } from "../../app/hooks/hooks"
 import { RootState } from "../../app/store"
 import { Text_bodyJSON } from "../../app/types/types"
 import { References } from "../References/References"
+import Times from "./Times"
 
 export default function TextPage(){
     const dispatch = useAppDispatch()
@@ -27,8 +28,13 @@ export default function TextPage(){
             <References id_text={id_text} />
             {text &&
             <div className="my-4">
-                <h1>{text.title}</h1>
-                <div>{text.text_body && JSON.parse(text.text_body).map((el: Text_bodyJSON) => el.eng).join('. ')}</div>
+                <h1 className="text-xl font-bold">{text.title}</h1>
+                <div className="pt-4">
+                    {text.text_body && JSON.parse(text.text_body).map((el: Text_bodyJSON) => {
+                    return (
+                        <Times {...el} />
+                    )
+                })}</div>
             </div>
             }
         </>

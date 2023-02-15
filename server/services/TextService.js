@@ -46,26 +46,46 @@ class TextService {
         await db.none('UPDATE texts SET img = $2 WHERE id = $1', [id, imgFileName])
         return await db.one('SELECT * FROM texts WHERE id = $1', [id])
     }
-    async update (title, img, text_body, id){
-        if(!title || !img || !text_body || !id) {
-            throw new Error('Получены не все параметры текста.')
+    async update (id, title, title_rus, text_body, img){
+        if(! id ){
+            throw new Error('Не указан id текста.')
         }
-        await db.none('UPDATE texts SET title = $1, img = $2, text_body = $3 WHERE id = $4', [title, img, text_body, id]);
-        return await db.one('SELECT * FROM texts WHERE id = $1', [id])
-    }
-    async updateWithoutImg (title, text_body, id){
-        if(!title || !text_body || !id) {
-            throw new Error('Получены не все параметры текста.')
+        const text = await db.one("SELECT * FROM texts WHERE id = $1", [id])
+        if(! text ){
+            throw new Error('Несуществующий id текста.')
         }
-        await db.none('UPDATE texts SET title = $1, text_body = $2 WHERE id = $3', [title, text_body, id]);
+        if(img){
+            try{
+                await unlink(this.mediaPath + '/img/' + text.img);
+            }catch(e){
+                console.log(e.message)
+            }finally{
+                await this.addImg(id, img)
+            }
+        }
+        if(title){
+            await db.none('UPDATE texts SET title = $1 WHERE id = $2', [title, id])
+        }
+        if(title_rus){
+            await db.none('UPDATE texts SET title_rus = $1 WHERE id = $2', [title_rus, id])
+        }
+        if(text_body){
+            await db.none('UPDATE texts SET text_body = $1 WHERE id = $2', [text_body, id])
+        }
         return await db.one('SELECT * FROM texts WHERE id = $1', [id])
     }
     async delete (id){
         if(!id) {
             throw new Error('Не указан id текста.')
         }
-        await db.none('DELETE FROM texts WHERE id = $1', [id]);
-        return await db.none('SELECT * FROM texts WHERE id = $1', [id]);
+        return await db.one('DELETE FROM texts WHERE id = $1 RETURNING *', [id]);
+    }
+    async toggleHide (id){
+        if(!id) {
+            throw new Error('Не указан id текста.')
+        }
+        const { visible } = await db.one('SELECT visible FROM texts WHERE id = $1', [id])
+        return await db.one('UPDATE texts SET visible = $1 WHERE id = $2 RETURNING *', [!visible, id])
     }
     async getAllTitles (){
         const data = await db.manyOrNone('SELECT id, title, img FROM texts WHERE is_global = true AND visible = true');

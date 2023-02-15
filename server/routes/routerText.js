@@ -6,6 +6,7 @@ routerText.get('/', TextController.getAll)
 routerText.get('/titles', TextController.getAllTitles)
 routerText.post('/', TextController.add)
 routerText.put('/', TextController.update)
+routerText.put('/hide/:id', TextController.toggleHide)
 routerText.delete('/', TextController.delete)
 
 routerText.get('/no-global', TextController.getAllNoGlobal)
